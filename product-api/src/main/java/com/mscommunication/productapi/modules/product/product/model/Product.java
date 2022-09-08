@@ -1,5 +1,7 @@
-package com.mscommunication.productapi.modules.produto.model;
+package com.mscommunication.productapi.modules.product.product.model;
 
+import com.mscommunication.productapi.modules.product.category.model.Category;
+import com.mscommunication.productapi.modules.product.supplier.model.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

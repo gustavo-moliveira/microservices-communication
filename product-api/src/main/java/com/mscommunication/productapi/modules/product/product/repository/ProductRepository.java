@@ -1,6 +1,6 @@
-package com.mscommunication.productapi.modules.produto.repository;
+package com.mscommunication.productapi.modules.product.product.repository;
 
-import com.mscommunication.productapi.modules.produto.model.Product;
+import com.mscommunication.productapi.modules.product.product.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,6 @@
-package com.mscommunication.productapi.modules.produto.model;
+package com.mscommunication.productapi.modules.product.category.model;
 
-import com.mscommunication.productapi.modules.produto.dto.CategoryRequest;
-import com.mscommunication.productapi.modules.produto.dto.CategoryResponse;
+import com.mscommunication.productapi.modules.product.category.dto.CategoryRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

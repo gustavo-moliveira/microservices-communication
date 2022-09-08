@@ -1,6 +1,6 @@
-package com.mscommunication.productapi.modules.produto.dto;
+package com.mscommunication.productapi.modules.product.category.dto;
 
-import com.mscommunication.productapi.modules.produto.model.Category;
+import com.mscommunication.productapi.modules.product.category.model.Category;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 

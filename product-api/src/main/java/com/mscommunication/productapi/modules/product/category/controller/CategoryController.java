@@ -1,8 +1,8 @@
-package com.mscommunication.productapi.modules.produto.controller;
+package com.mscommunication.productapi.modules.product.category.controller;
 
-import com.mscommunication.productapi.modules.produto.dto.CategoryRequest;
-import com.mscommunication.productapi.modules.produto.dto.CategoryResponse;
-import com.mscommunication.productapi.modules.produto.service.CategoryService;
+import com.mscommunication.productapi.modules.product.category.service.CategoryService;
+import com.mscommunication.productapi.modules.product.category.dto.CategoryRequest;
+import com.mscommunication.productapi.modules.product.category.dto.CategoryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
