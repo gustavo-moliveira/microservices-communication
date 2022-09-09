@@ -25,3 +25,7 @@ spring:
       mode:
       continue-on-error: true
       platform: postgresql
+
+app-config:
+  secrets:
+    api-secret: ${API_SECRET:YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY= }
