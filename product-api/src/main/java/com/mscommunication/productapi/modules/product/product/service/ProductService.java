@@ -1,17 +1,11 @@
 package com.mscommunication.productapi.modules.product.product.service;
 
 import com.mscommunication.productapi.config.exception.ValidationException;
-import com.mscommunication.productapi.modules.product.category.dto.CategoryRequest;
-import com.mscommunication.productapi.modules.product.category.dto.CategoryResponse;
-import com.mscommunication.productapi.modules.product.category.model.Category;
-import com.mscommunication.productapi.modules.product.category.repository.CategoryRepository;
 import com.mscommunication.productapi.modules.product.category.service.CategoryService;
 import com.mscommunication.productapi.modules.product.product.dto.ProductRequest;
 import com.mscommunication.productapi.modules.product.product.dto.ProductResponse;
 import com.mscommunication.productapi.modules.product.product.model.Product;
 import com.mscommunication.productapi.modules.product.product.repository.ProductRepository;
-import com.mscommunication.productapi.modules.product.supplier.model.Supplier;
-import com.mscommunication.productapi.modules.product.supplier.repository.SupplierRepository;
 import com.mscommunication.productapi.modules.product.supplier.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
