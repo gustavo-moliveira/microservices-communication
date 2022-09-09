@@ -8,6 +8,9 @@ import com.mscommunication.productapi.modules.product.supplier.repository.Suppli
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 
@@ -17,10 +20,36 @@ public class SupplierService {
     private SupplierRepository supplierRepository;
 
     public Supplier findById(Integer id) {
+        if (isEmpty(id)) {
+            throw new ValidationException("The supplier ID must be informed.");
+        }
         return supplierRepository
                 .findById(id)
                 .orElseThrow(() -> new ValidationException("There's no supplier for the given ID."));
     }
+    public SupplierResponse findByIdResponse(Integer id) {
+        return SupplierResponse.of(findById(id));
+    }
+
+    public List<SupplierResponse> findByName(String name) {
+        if (isEmpty(name)) {
+            throw new ValidationException("The supplier name must be informed.");
+        }
+        return supplierRepository
+                .findByNameIgnoreCaseContaining(name)
+                .stream()
+                .map(SupplierResponse::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<SupplierResponse> findAll() {
+        return supplierRepository
+                .findAll()
+                .stream()
+                .map(SupplierResponse::of)
+                .collect(Collectors.toList());
+    }
+
 
     public SupplierResponse save(SupplierRequest request) {
         validateSupplierNameInformed(request);
