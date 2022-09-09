@@ -1,6 +1,10 @@
 server:
   port: ${PORT:8081}
+
 spring:
+  main:
+    allow-bean-definition-overriding: true
+
   application:
     name: product-api
 
@@ -9,7 +13,10 @@ spring:
     url: jdbc:postgresql://localhost:5433/product-db
     username: admin
     password: root
+    initialization-mode: always
     initialize: true
+    continue-on-error: true
+    platform: postgresql
     maxActive: 3
 
   jpa:
@@ -20,12 +27,25 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
-  sql:
-    init:
-      mode:
-      continue-on-error: true
-      platform: postgresql
+
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USER:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
 
 app-config:
   secrets:
     api-secret: ${API_SECRET:YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY= }
+
+  rabbit:
+    exchange:
+      product: product.topic
+
+    routingKey:
+      product-stock: product-stock-update.routingKey
+      sales-confirmation: sales-confirmation.routingKey
+
+    queue:
+      product-stock: product-stock-update.queue
+      sales-confirmation: sales-confirmation.queue
