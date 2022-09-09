@@ -1,7 +1,6 @@
 package com.mscommunication.productapi.modules.product.supplier.model;
 
 import com.mscommunication.productapi.modules.product.supplier.dto.SupplierRequest;
-import com.mscommunication.productapi.modules.product.supplier.dto.SupplierResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

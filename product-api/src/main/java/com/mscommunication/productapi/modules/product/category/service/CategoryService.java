@@ -16,6 +16,13 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    public Category findById(Integer id) {
+        return categoryRepository
+                .findById(id)
+                .orElseThrow(() -> new ValidationException("There's no category for the given ID."));
+    }
+
+
     public CategoryResponse save(CategoryRequest request) {
         validateCategoryNameInformed(request);
         var category = categoryRepository.save(Category.of(request));

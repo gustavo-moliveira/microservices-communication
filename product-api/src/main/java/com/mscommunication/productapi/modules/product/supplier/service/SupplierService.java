@@ -1,10 +1,6 @@
 package com.mscommunication.productapi.modules.product.supplier.service;
 
 import com.mscommunication.productapi.config.exception.ValidationException;
-import com.mscommunication.productapi.modules.product.category.dto.CategoryRequest;
-import com.mscommunication.productapi.modules.product.category.dto.CategoryResponse;
-import com.mscommunication.productapi.modules.product.category.model.Category;
-import com.mscommunication.productapi.modules.product.category.repository.CategoryRepository;
 import com.mscommunication.productapi.modules.product.supplier.dto.SupplierRequest;
 import com.mscommunication.productapi.modules.product.supplier.dto.SupplierResponse;
 import com.mscommunication.productapi.modules.product.supplier.model.Supplier;
@@ -19,6 +15,12 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class SupplierService {
     @Autowired
     private SupplierRepository supplierRepository;
+
+    public Supplier findById(Integer id) {
+        return supplierRepository
+                .findById(id)
+                .orElseThrow(() -> new ValidationException("There's no supplier for the given ID."));
+    }
 
     public SupplierResponse save(SupplierRequest request) {
         validateSupplierNameInformed(request);
