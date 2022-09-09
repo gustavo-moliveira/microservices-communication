@@ -1,6 +1,6 @@
 package com.mscommunication.productapi.modules.product.supplier.controller;
 
-import com.mscommunication.productapi.modules.product.category.dto.CategoryResponse;
+import com.mscommunication.productapi.config.exception.SuccessResponse;
 import com.mscommunication.productapi.modules.product.supplier.dto.SupplierRequest;
 import com.mscommunication.productapi.modules.product.supplier.dto.SupplierResponse;
 import com.mscommunication.productapi.modules.product.supplier.service.SupplierService;
@@ -33,5 +33,16 @@ public class SupplierController {
     @GetMapping("/name/{name}")
     public List<SupplierResponse> findByName(@PathVariable String name) {
         return supplierService.findByName(name);
+    }
+
+    @DeleteMapping("{id}")
+    public SuccessResponse delete(@PathVariable Integer id) {
+        return supplierService.delete(id);
+    }
+
+    @PutMapping("{id}")
+    public SupplierResponse update(@RequestBody SupplierRequest request,
+                                  @PathVariable Integer id) {
+        return supplierService.update(request, id);
     }
 }

@@ -1,5 +1,6 @@
 package com.mscommunication.productapi.modules.product.product.service;
 
+import com.mscommunication.productapi.config.exception.SuccessResponse;
 import com.mscommunication.productapi.config.exception.ValidationException;
 import com.mscommunication.productapi.modules.product.category.service.CategoryService;
 import com.mscommunication.productapi.modules.product.product.dto.ProductRequest;
@@ -8,6 +9,7 @@ import com.mscommunication.productapi.modules.product.product.model.Product;
 import com.mscommunication.productapi.modules.product.product.repository.ProductRepository;
 import com.mscommunication.productapi.modules.product.supplier.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Lazy
     @Autowired
     private SupplierService supplierService;
     @Autowired
@@ -36,10 +39,21 @@ public class ProductService {
         return ProductResponse.of(product);
     }
 
+    public ProductResponse update(ProductRequest request,
+                                  Integer id) {
+        validateProductDataInformed(request);
+        validateInformedId(id);
+        validateCategoryAndSupllierIdInformed(request);
+        var category = categoryService.findById(request.getCategoryId());
+        var supplier = supplierService.findById(request.getSupplierId());
+        var product = Product.of(request, category, supplier);
+        product.setId(id);
+        productRepository.save(product);
+        return ProductResponse.of(product);
+    }
+
     public Product findById(Integer id) {
-        if (isEmpty(id)) {
-            throw new ValidationException("The product ID must be informed.");
-        }
+        validateInformedId(id);
         return productRepository
                 .findById(id)
                 .orElseThrow(() -> new ValidationException("There's no product for the given ID."));
@@ -89,6 +103,24 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public Boolean existsByCategoryId(Integer categoryId) {
+        return productRepository.existsByCategoryId(categoryId);
+    }
+    public Boolean existsBySupplierId(Integer supplierId) {
+        return productRepository.existsBySupplierId(supplierId);
+    }
+
+    public SuccessResponse delete(Integer id) {
+        validateInformedId(id);
+        productRepository.deleteById(id);
+        return SuccessResponse.create("The product was deleted.");
+    }
+
+    private void validateInformedId(Integer id) {
+        if (isEmpty(id)) {
+            throw new ValidationException("The supplier ID must be informed.");
+        }
+    }
 
     private void validateProductDataInformed(ProductRequest request) {
         if (isEmpty(request.getName())) {

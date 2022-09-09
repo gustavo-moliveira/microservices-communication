@@ -1,5 +1,6 @@
 package com.mscommunication.productapi.modules.product.category.controller;
 
+import com.mscommunication.productapi.config.exception.SuccessResponse;
 import com.mscommunication.productapi.modules.product.category.service.CategoryService;
 import com.mscommunication.productapi.modules.product.category.dto.CategoryRequest;
 import com.mscommunication.productapi.modules.product.category.dto.CategoryResponse;
@@ -32,5 +33,16 @@ public class CategoryController {
     @GetMapping("/description/{description}")
     public List<CategoryResponse> findByDescription(@PathVariable String description) {
         return categoryService.findByDescriptionIgnoreCaseContaining(description);
+    }
+
+    @DeleteMapping("{id}")
+    public SuccessResponse delete(@PathVariable Integer id) {
+        return categoryService.delete(id);
+    }
+
+    @PutMapping("{id}")
+    public CategoryResponse update(@RequestBody CategoryRequest request,
+                                   @PathVariable Integer id) {
+        return categoryService.update(request, id);
     }
 }

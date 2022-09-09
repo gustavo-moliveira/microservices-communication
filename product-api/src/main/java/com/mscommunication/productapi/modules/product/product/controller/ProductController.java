@@ -1,5 +1,6 @@
 package com.mscommunication.productapi.modules.product.product.controller;
 
+import com.mscommunication.productapi.config.exception.SuccessResponse;
 import com.mscommunication.productapi.modules.product.product.dto.ProductRequest;
 import com.mscommunication.productapi.modules.product.product.dto.ProductResponse;
 import com.mscommunication.productapi.modules.product.product.service.ProductService;
@@ -42,5 +43,16 @@ public class ProductController {
     @PostMapping
     public ProductResponse save(@RequestBody ProductRequest request) {
         return productService.save(request);
+    }
+
+    @DeleteMapping("{id}")
+    public SuccessResponse delete(@PathVariable Integer id) {
+        return productService.delete(id);
+    }
+
+    @PutMapping("{id}")
+    public ProductResponse update(@RequestBody ProductRequest request,
+                                   @PathVariable Integer id) {
+        return productService.update(request, id);
     }
 }
