@@ -1,9 +1,7 @@
 package com.mscommunication.productapi.modules.product.product.controller;
 
 import com.mscommunication.productapi.config.exception.SuccessResponse;
-import com.mscommunication.productapi.modules.product.product.dto.ProductRequest;
-import com.mscommunication.productapi.modules.product.product.dto.ProductResponse;
-import com.mscommunication.productapi.modules.product.product.dto.ProductSalesResponse;
+import com.mscommunication.productapi.modules.product.product.dto.*;
 import com.mscommunication.productapi.modules.product.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +53,11 @@ public class ProductController {
     public ProductResponse update(@RequestBody ProductRequest request,
                                    @PathVariable Integer id) {
         return productService.update(request, id);
+    }
+
+    @PostMapping("/check-stock")
+    public SuccessResponse checkProductsStock(@RequestBody ProductCheckStockRequest request) {
+        return productService.checkProductsStock(request);
     }
 
     @GetMapping("/{id}/sales")
