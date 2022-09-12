@@ -24,7 +24,7 @@ public class RabbitConfig {
     @Value("${app-config.rabbit.queue.product-stock}")
     private String productStockMq;
 
-    @Value("${app-config.rabbit.exchange.sales-confirmation}")
+    @Value("${app-config.rabbit.queue.sales-confirmation}")
     private String salesConfirmationMq;
 
     @Bean
@@ -45,17 +45,17 @@ public class RabbitConfig {
     @Bean
     public Binding productStockMqBinding(TopicExchange topicExchange) {
         return BindingBuilder
-            .bind(productStockMq())
-            .to(topicExchange)
-            .with(productStockKey);
+                .bind(productStockMq())
+                .to(topicExchange)
+                .with(productStockKey);
     }
 
     @Bean
     public Binding salesConfirmationMqBinding(TopicExchange topicExchange) {
         return BindingBuilder
-            .bind(productStockMq())
-            .to(topicExchange)
-            .with(salesConfirmationKey);
+                .bind(salesConfirmationMq())
+                .to(topicExchange)
+                .with(salesConfirmationKey);
     }
 
     @Bean
