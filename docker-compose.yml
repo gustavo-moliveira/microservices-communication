@@ -23,13 +23,12 @@ services:
       - 5433:5432
 
   sales-db:
-    image: tutum/mongodb
+    image: mongo:latest
     container_name: sales-db
     restart: always
     environment:
-      - MONGODB_USER=admin
-      - MONGODB_DATABASE=sales-db
-      - MONGODB_PASS=root
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=root
     ports:
       - 27017:27017
       - 28017:28017
