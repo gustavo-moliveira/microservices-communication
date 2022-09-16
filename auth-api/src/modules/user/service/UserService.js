@@ -53,6 +53,10 @@ class UserService {
     
     async getAccessToken(req) {
         try {
+            const {transactionid, serviceid} = req.headers;
+            console.info(
+                `Request to POST login with data ${JSON.stringify(req.body)} | transactionID: ${transactionid} | serviceID: ${serviceid}`
+            )
             const {email, password} = req.body;
             this.validateAccessTokenData(email, password)
             let user = await UserRepository.findByEmail(email);
@@ -68,10 +72,14 @@ class UserService {
                 secrets.API_SECRET, 
                 {expiresIn: '1d'}
             );
-            return {
+            let response = {
                 status: httpStatus.SUCESS,
                 accessToken,
             };
+            console.info(
+                `Response to POST with data ${JSON.stringify(req.body)} | transactionID: ${transactionid} | serviceID: ${serviceid}`
+            );
+            return response;
         } catch (err) {
             return {
                 status: err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR,
