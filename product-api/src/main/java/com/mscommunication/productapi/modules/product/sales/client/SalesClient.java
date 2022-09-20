@@ -18,3 +18,4 @@ public interface SalesClient {
     Optional<SalesProductResponse> findSalesByProductId(@PathVariable Integer productId);
 
 }
+    

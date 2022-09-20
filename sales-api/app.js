@@ -3,19 +3,20 @@ import express from "express";
 import { connectMongoDb } from "./src/config/db/mongoDbConfig.js";
 import { createInitialData } from "./src/config/db/initialData.js";
 import { connectRabbitMq } from "./src/config/rabbitmq/rabbitConfig.js";
-
 import checkToken from "./src/config/auth/checkToken.js";
 import orderRoutes from './src/modules/sales/routes/OrderRoutes.js'
+import tracing from "./src/config/tracing.js";
 
 const app = express();
 const env = process.env;
 const PORT = env.PORT || 8082;
 
 connectMongoDb();
-// createInitialData();
+createInitialData();
 connectRabbitMq();
 
 app.use(express.json());
+app.use(tracing);
 app.use(checkToken);
 app.use(orderRoutes);
 
