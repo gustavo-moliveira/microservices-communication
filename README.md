@@ -128,7 +128,7 @@ Recieving message from queue: {"salesId":"6165b92addaf7fc9dd85dad0","status":"AP
 
 ## Documentação dos endpoints
 
-A documentação da API se faz presente no arquivo [API_DOCS.md].
+A documentação da API se faz presente no arquivo [API_DOCS.md](https://github.com/gustavo-moliveira/microservices-communication/blob/master/API_DOCS.md).
 
 ## Deploy no Heroku
 
